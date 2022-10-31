@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="Lyzev - About" property="og:title" />
+    <meta content="A small description about me." property="og:description" />
+    <meta content="https://lyzev.github.io/" property="og:url" />
+    <meta content="https://lyzev.github.io/" property="og:site_name" />
+    <meta content="https://avatars.githubusercontent.com/u/69327579?v=4" property="og:image" />
+    <title>Lyzev - About</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/69327579?v=4">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-dark.min.css">
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/repositories">Repositories</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a id="active" href="/about">About</a></li>
+    </ul>
+</header>
+<main style="padding-top: 50px; padding-bottom: 40px;">
+    <section style="padding: 10px; width: 98%;" class="markdown-body" id="readme"></section>
+</main>
+<footer>
+    <p style="font-size: .75rem">Copyright © 2022 Lyzev</p>
+</footer>
+<script>
+    const request = new XMLHttpRequest()
+    request.open("GET", 'https://raw.githubusercontent.com/Lyzev/Lyzev/main/README.md', false)
+    request.send()
+    const data = request.responseText
+    request.open("POST", 'https://api.github.com/markdown', false)
+    request.send(JSON.stringify({
+        text: data
+    }))
+    document.getElementById('readme').innerHTML = request.responseText
+</script>
+</body>
+</html>
